@@ -9,6 +9,19 @@
   <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify@4/lib/themes/vue.css">
 </head>
 <body>
+<nav>
+    <a href="#/Web/">Web</a>
+    <a href="#/基础语法/">基础语法</a>
+    <a href="#/底层原理/">底层原理</a>
+    <a href="#/技术杂谈/">技术杂谈</a>
+    <a href="#/数据分析/">数据分析</a>
+    <a href="#/数据存储/">数据存储</a>
+    <a href="#/数据采集/">数据采集</a>
+    <a href="#/文章精选/">文章精选</a>
+</nav>
+
+
+
   <div id="app"></div>
   <script>
     window.$docsify = {
@@ -17,12 +30,40 @@
 	  loadSidebar: true,
 	  subMaxLevel: 2,
 	  search: {
-  paths: 'auto',
-  placeholder: '请输入要搜索的关键字',
-  noData: '没有结果',
-  depth: 6,
-},
-	  coverpage: true 
+      paths: 'auto',
+      placeholder: '请输入要搜索的关键字',
+      noData: '没有结果',
+      depth: 6,
+      },
+	  coverpage: true,
+	   // 折叠目录
+        plugins: [
+            function (hook, vm) {
+                hook.doneEach(function () {
+                    document.querySelectorAll(".sidebar-nav > ul > li").forEach(
+                        function (node, index, nodelist) {
+                            var span = document.createElement("span");
+                            span.innerHTML = node.firstChild.data;
+                            span.style.cursor = "pointer";
+                            span.onclick = function (event) {
+                                var ul = event.target.nextElementSibling;
+                                if (ul.style.display === "none") {
+                                    ul.style.display = "block";
+                                } else {
+                                    ul.style.display = "none";
+                                }
+                            };
+                            node.firstChild.replaceWith(span);
+                            node.lastChild.style.display = "none";
+                        });
+                    var active = document.querySelector(".sidebar-nav li.active");
+                    if (active) {
+                        active.parentElement.style.display = "block";
+                    }
+                });
+            }
+        ]
+	  
     }
   </script>
   <!-- Docsify v4 -->
