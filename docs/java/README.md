@@ -1,4 +1,4 @@
 - [返回首页](/)
 - [java](java/)
-  - [子菜单](java/子菜单/)
-    - [son](java/子菜单/son.md)
+  - [分库分表](java/分库分表/)
+    - [son](java/分库分表/son.md)
